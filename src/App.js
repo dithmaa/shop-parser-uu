@@ -1,25 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
+import Post from './components/Post';
+import React from 'react';
+import axios from 'axios';
+import { setPosts } from './redux/posts-reducer';
+import { connect } from 'react-redux';
+import result from './result.json';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+
+  fetchPosts = () => {
+    // axios.get('https://6202384ab8735d00174cb884.mockapi.io/posts').then(({ data }) => {
+      
+    // })
+    this.props.setPosts(result);
+  }
+  componentDidMount() {
+    this.fetchPosts();
+    
+  }
+  render() {
+    const {posts} = this.props;
+    return (
+      <div className="App">
+        <div className='container'>
+          {
+            !posts.length ? <span>Loadin'...</span>
+              : posts.map(({ title, description, image, price }, key) => {
+                return (
+                  <Post
+                    key={key}
+                    title={title}
+                    description={description}
+                    image={image}
+                    price={price}
+                  />
+                )
+              })
+          }
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return{ 
+    posts: state.postsPage.posts
+  }
+}
+export default connect(mapStateToProps, {setPosts})(App);
