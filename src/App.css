@@ -1,9 +1,4 @@
-.post {
-  margin: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  padding: 15px;
-}
+
 .post__image{ 
   margin-right: 30px;
 }
@@ -17,7 +12,22 @@
   align-items: center;
 }
 .container{
-  max-width: 992px;
+  max-width: 1400px;
   width: 90%;
   margin: 0 auto;
 }
+.fww{
+  flex-wrap: wrap;
+}
+.jcc{
+  justify-content: center;
+}
+.fxdc{
+  flex-direction: column;
+}
+
+/* @media (max-width: 1200px){
+  .container{
+    opacity: 0.3;
+  }
+} */

@@ -10,10 +10,10 @@ class App extends React.Component {
 
 
   fetchPosts = () => {
-    // axios.get('https://6202384ab8735d00174cb884.mockapi.io/posts').then(({ data }) => {
-      
-    // })
-    this.props.setPosts(result);
+    axios.get('https://6202384ab8735d00174cb884.mockapi.io/posts').then(({ data }) => {
+      this.props.setPosts(data);
+    })
+    
   }
   componentDidMount() {
     this.fetchPosts();
@@ -23,10 +23,10 @@ class App extends React.Component {
     const {posts} = this.props;
     return (
       <div className="App">
-        <div className='container'>
+        <div className='container flex fww jcc'>
           {
             !posts.length ? <span>Loadin'...</span>
-              : posts.map(({ title, description, image, price }, key) => {
+              : posts.map(({ title, description, image, price, rating }, key) => {
                 return (
                   <Post
                     key={key}
@@ -34,6 +34,8 @@ class App extends React.Component {
                     description={description}
                     image={image}
                     price={price}
+                    
+                    rating={rating}
                   />
                 )
               })

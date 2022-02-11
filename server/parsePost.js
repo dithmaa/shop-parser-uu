@@ -29,13 +29,15 @@ const parsePost = (url, elems) => {
             const text = $(elems.text).text().trim();
             const image = $(elems.image).attr('src');
             const price = parseInt($(elems.price).text());
+            const rating = parseInt($(elems.rating).attr('width'));
     
     
             const post = {
                 title: title,
                 description: text,
                 image: image,
-                price: price
+                price: price,
+                rating: rating
             }
             resolve(post);
     
@@ -43,7 +45,7 @@ const parsePost = (url, elems) => {
     })
 }
 
-function parseLinks(url, className, maxLinks = 5) {
+function parseLinks(url, className, maxLinks = 48) { // from main page of links
     return new Promise(  (resolve,reject)=>{ 
         let links = [];
         unirest.get(url).end(({ body, error }) => {
