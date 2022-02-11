@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Парсер продуктовых интернет магазинов Улан-Удэ и не только
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
